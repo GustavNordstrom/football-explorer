@@ -1,0 +1,14 @@
+{
+    "name": "club-explorer-backend",
+    "version": "1.0.0",
+    "description": "Backend for the football club explorer project",
+    "main": "functions/getClub.js",
+    "scripts": {
+      "start": "sam local start-api",
+      "test": "jest"
+    },
+    "devDependencies": {
+        "jest": "^29.7.0"
+      }
+  }
+  

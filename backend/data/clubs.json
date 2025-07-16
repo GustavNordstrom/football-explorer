@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "name": "Liverpool",
+      "stadium": "Anfield",
+      "city": "Liverpool"
+    },
+    {
+      "id": 2,
+      "name": "Manchester United",
+      "stadium": "Old Trafford",
+      "city": "Manchester"
+    }
+  ]
+  
