@@ -4,11 +4,15 @@
     "description": "Backend for the football club explorer project",
     "main": "functions/getClub.js",
     "scripts": {
-      "start": "sam local start-api",
-      "test": "jest"
+        "start": "sam local start-api",
+        "test": "jest"
     },
     "devDependencies": {
+        "aws-sdk-client-mock": "^4.1.0",
         "jest": "^29.7.0"
-      }
-  }
-  
+    },
+    "dependencies": {
+        "aws-sdk": "^2.1692.0",
+        "bcrypt": "^6.0.0"
+    }
+}

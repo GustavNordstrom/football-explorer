@@ -23,7 +23,32 @@ Resources:
           Properties:
             Path: /club
             Method: get
-
+  PutUserFunction:
+    Type: AWS::Serverless::Function
+    Properties: 
+      Handler: functions/putUser/putUser.handler
+      Runtime: nodejs18.x
+      CodeUri: backend
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: Users
+      Events:
+        PutUser:
+          Type: Api
+          Properties:
+            Path: /user
+            Method: post
+  UsersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Users
+      AttributeDefinitions: 
+        - AttributeName: username
+          AttributeType: S
+      KeySchema: 
+        - AttributeName: username
+          AttributeType: HASH
+      BillingMode: PAY_PER_REQUEST
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
