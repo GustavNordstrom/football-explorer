@@ -51,7 +51,7 @@ Resources:
         CheckLogin:
           Type: Api
           Properties:
-            Path: /user
+            Path: /checklogin
             Method: post
   UsersTable:
     Type: AWS::DynamoDB::Table
