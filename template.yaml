@@ -38,6 +38,21 @@ Resources:
           Properties:
             Path: /user
             Method: post
+  CheckLoginFunction:
+    Type: AWS::Serverless::Function
+    Properties: 
+      Handler: functions/checkLogin/checkLogin.handler
+      Runtime: nodejs18.x
+      CodeUri: backend
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: Users
+      Events:
+        CheckLogin:
+          Type: Api
+          Properties:
+            Path: /user
+            Method: post
   UsersTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -47,7 +62,7 @@ Resources:
           AttributeType: S
       KeySchema: 
         - AttributeName: username
-          AttributeType: HASH
+          KeyType: HASH
       BillingMode: PAY_PER_REQUEST
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
