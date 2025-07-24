@@ -64,16 +64,34 @@ Resources:
         - AttributeName: username
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: club-explorer-frontend
+      WebsiteConfiguration: 
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Get Club function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/club/"
-  HelloWorldFunction:
-    Description: "Get Club Lambda Function ARN"
-    Value: !GetAtt GetClubFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Get Club function"
-    Value: !GetAtt GetClubFunctionRole.Arn
+  #HelloWorldApi:
+  #  Description: "API Gateway endpoint URL for Prod stage for Get Club function"
+  #  Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/club/"
+  #HelloWorldFunction:
+  #  Description: "Get Club Lambda Function ARN"
+  #  Value: !GetAtt GetClubFunction.Arn
+  #HelloWorldFunctionIamRole:
+  #  Description: "Implicit IAM Role created for Get Club function"
+  #  Value: !GetAtt GetClubFunctionRole.Arn
+  FrontendBucketWebsiteURL:
+    Description: "URL of the frontend website"
+    Value: !Sub "http://${FrontendBucket}.s3-website-${AWS::Region}.amazonaws.com"
+  ApiURL:
+    Description: "API Gateway endpoint"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
